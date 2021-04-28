@@ -1,0 +1,81 @@
+{%  extends 'template.html.twig' %}
+{% block javascript %}
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                /* No need to set credentials if already passed in URL */
+                center: new Microsoft.Maps.Location(47.624527, -122.355255),
+                zoom: 8,
+                           });
+            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                var requestOptions = {
+                    bounds: map.getBounds(),
+                    where: '{{ pic.localisation }}',
+                    callback: function (answer, userData) {
+                        map.setView({ bounds: answer.results[0].bestView });
+                        map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
+                    }
+                };
+                searchManager.geocode(requestOptions);
+            });
+
+        }
+    </script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Arew96jBgkLtZofYIO503lTVv15wSq6VoFyI0WYbuXYk0TNQNoTM3tycYcW5FwEL&callback=loadMapScenario' async defer></script>
+
+{% endblock %}
+{% block head %}
+    <div class="masthead-subheading">Modifier la photo</div>
+    <div class="masthead-heading text-uppercase">{{ pic.titre }}</div>
+{% endblock %}
+ {% block bodyy %}
+     <div class="under-title"><button class="home-btn">Home</button><p>{{ pic.localisation }}</p></div>
+     <div id='myMap' style='width: 100vw; height: 400px;'></div>
+<div class="Modif-body">
+    <div class="modif-pic"><img src="{{ asset(pic.url)}}" class="card-img-top shadow-lg" alt="..." ></div>
+
+    <div class="modif-from">
+        <div class="modal-body shadow-lg">
+        {{ form_start(f1,{'attr': {'novalidate': 'novalidate'}} )}}
+            <div class="display-5 pb-3 mb-3 border-bottom"><h3 style="text-align: center" class="text-uppercase">Modifier</h3></div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Titre</label>
+                <div class="col-sm-10">
+                    {{ form_widget(f1.titre, { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(f1.titre)  }}
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Theme</label>
+                <div class="col-sm-10">
+                    {{ form_widget(f1.theme, { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(f1.theme)  }}
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Couleur</label>
+                <div class="col-sm-10">
+                    {{ form_widget(f1.couleur)}}
+                    {{ form_errors(f1.couleur)  }}
+                </div>
+            </div>
+
+            <div class="modal-footer" style="display: flex;justify-content: center">
+            <a href={{ path('recherche_nsc') }} class="btn btn-secondary" >Annuler</a>
+            {{ form_widget(f1.Modifier)}}
+            <a href={{ path('DeletePic',{'id':pic.idPhoto}) }} class=" btn btn-danger" >Supprimer</a></div>
+        {{ form_end(f1) }}
+        </div>
+    </div>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+    <script>function myFunction1() {
+            alert("Hello! I am an alert box!");
+        }</script>
+</div>
+ {% endblock %}

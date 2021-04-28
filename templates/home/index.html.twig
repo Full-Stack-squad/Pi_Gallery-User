@@ -1,0 +1,16 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Fotify{% endblock %}
+{% block head %}
+    {% if app.user %}
+        <div class="masthead-subheading">Bienvenue</div>
+        <div class="masthead-heading text-uppercase"> {{ app.user.nom }}   {{ app.user.prenom }}</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ path('recherche_nsc') }}">Profile</a>
+
+    {% else %}
+        <div class="masthead-subheading">Découvrez et partagez</div>
+        <div class="masthead-heading text-uppercase">Les meilleures photos du monde</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ path('app_login') }}">S'authentifier</a>
+    {% endif %}
+
+{% endblock %}

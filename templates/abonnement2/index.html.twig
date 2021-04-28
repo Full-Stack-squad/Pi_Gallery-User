@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes abonnements{% endblock %}
+
+{% block body %}
+    <h1>Les abonnements</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Anom</th>
+                <th>Idu</th>
+                <th>Ida</th>
+                <th>Noma</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement2 in abonnement2s %}
+            <tr>
+                <td>{{ abonnement2.id }}</td>
+                <td>{{ abonnement2.anom }}</td>
+                <td>{{ abonnement2.idu }}</td>
+                <td>{{ abonnement2.ida }}</td>
+                <td>{{ abonnement2.noma }}</td>
+                <td>
+                    <a href="{{ path('abonnement2_show', {'id': abonnement2.id}) }}">show</a>
+                    <a href="{{ path('abonnement2_edit', {'id': abonnement2.id}) }}">remove</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonnement2_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'templateBack.html.twig' %}
+
+{% block body %}
+
+
+    <div style="margin-bottom: 50px">
+    <table id="myTable" class="table table-dark table-striped" >
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Theme</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Supprimer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in pic %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ i.titre }}</td>
+            <td>{{ i.theme }}</td>
+            <td><a href={{ path('commentback',{'id':i.idPhoto}) }} ><img src="{{ asset(i.url)}}" class="back-img" alt="..." ></a></td>
+            <td><a onclick="alertFunction()" href={{ path('Deleteback',{'id':i.idPhoto}) }} class="btn btn-outline-danger" >Supprimer</a></td>
+
+        </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    </div>
+    <div style="display: flex;justify-content: center">
+        {{ knp_pagination_render(pic) }}</div>
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function sortTable() {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("myTable");
+            switching = true;
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("TD")[0];
+                    y = rows[i + 1].getElementsByTagName("TD")[0];
+                    //check if the two rows should switch place:
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+        function alertFunction() {
+            confirm("Un email est envoyé a l'utilisateur!");
+        }
+    </script>
+{% endblock %}

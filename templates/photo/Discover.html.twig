@@ -1,0 +1,39 @@
+{%  extends 'template.html.twig' %}
+
+{% block head %}
+    <div class="masthead-subheading">Welcome To Our Studio!</div>
+    <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+
+{% endblock %}
+{% block bodyy %}
+
+    <div class="search-content" >
+        <form method="POST" class="search_form" name="rs" action="{{ path('rechercheP') }}">
+            <div class="search_bar">
+
+
+                <input type="text"  style="width: 400px" class="search-input" name="tfrech" placeholder="Rechercher"/>
+                <input type="Submit" class="btn btn-primary" value="Search"/>
+            </div>
+        </form>
+    </div>
+<div class="photos-search">
+    <div class="pic-explore">
+{% for f in tab %}
+
+    <div class="containerr">
+        <div class="overlay"> <a href={{ path('comment',{'id':f.idPhoto}) }} ><img src="{{ asset(f.url)}}" alt="Avatar" class="search-img">
+            </a> <h3>{{ f.titre }}</h3></div>
+    </div>
+
+
+
+{% endfor %}
+
+    </div>
+
+
+    </div>
+
+    {{ knp_pagination_render(tab) }}
+{% endblock %}

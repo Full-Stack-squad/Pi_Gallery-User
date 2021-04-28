@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}" />
+
+
+
+    <link rel="stylesheet" href="{{ asset('assets/CSS/styleBack.css') }}">
+    <!-- End layout styles -->
+
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="165.5199951171875px" height="80.0099609375px" viewBox="167.24000244140626 34.99501953125 165.5199951171875 80.0099609375" style="background: rgba(0, 0, 0, 0);" preserveAspectRatio="xMidYMid"><defs><linearGradient id="editing-outline-gradient" x1="-0.41354545764260087" x2="1.4135454576426008" y1="0.09326335692419985" y2="0.9067366430758002"><stop offset="0" stop-color="#ee4208"/><stop offset="1" stop-color="#4139ff"/></linearGradient><filter id="editing-outline" x="-100%" y="-100%" width="300%" height="300%"><feMorphology in="SourceGraphic" operator="dilate" radius="1" result="outline"/><feComposite operator="out" in="outline" in2="SourceAlpha"/></filter></defs><g filter="url(#editing-outline)"><g transform="translate(197.08687545359135, 92.69000053405762)"><path d="M17.94-20.14L17.94-20.14L17.94-20.14Q14.86-20.14 12.62-21.17L12.62-21.17L11.40-15.01L18.73-15.01L18.73-15.01Q18.73-13.00 17.73-11.72L17.73-11.72L17.73-11.72Q16.72-10.45 14.90-10.45L14.90-10.45L14.90-10.45Q12.92-10.45 11.10-11.17L11.10-11.17L11.10-11.17Q10.72-11.32 10.68-11.36L10.68-11.36L8.51 0L0.23 0L5.05-25.08L22.00-25.08L22.00-25.08Q22.00-22.76 20.92-21.45L20.92-21.45L20.92-21.45Q19.84-20.14 17.94-20.14ZM29.07 0.76L29.07 0.76L29.07 0.76Q20.71 0.76 20.71-7.11L20.71-7.11L20.71-7.11Q20.71-12.69 23.79-16.30L23.79-16.30L23.79-16.30Q27.06-20.14 32.72-20.14L32.72-20.14L32.72-20.14Q36.82-20.14 38.91-18.24L38.91-18.24L38.91-18.24Q41.00-16.34 41.00-12.35L41.00-12.35L41.00-12.35Q41.00-6.27 37.73-2.74L37.73-2.74L37.73-2.74Q34.54 0.76 29.07 0.76ZM30.06-15.77L30.06-15.77L30.06-15.77Q29.60-14.74 29.24-13.21L29.24-13.21L29.24-13.21Q28.88-11.67 28.42-9.23L28.42-9.23L28.42-9.23Q27.97-6.80 27.97-3.80L27.97-3.80L27.97-3.80Q27.97-2.81 28.29-2.17L28.29-2.17L28.29-2.17Q28.61-1.52 29.49-1.52L29.49-1.52L29.49-1.52Q30.36-1.52 30.91-1.94L30.91-1.94L30.91-1.94Q31.46-2.36 31.88-3.34L31.88-3.34L31.88-3.34Q32.64-5.09 33.25-8.34L33.25-8.34L33.25-8.34Q33.86-11.59 33.91-13.00L33.91-13.00L33.91-13.00Q33.97-14.40 33.97-15.45L33.97-15.45L33.97-15.45Q33.97-16.49 33.67-17.18L33.67-17.18L33.67-17.18Q33.36-17.86 32.51-17.86L32.51-17.86L32.51-17.86Q31.65-17.86 31.08-17.33L31.08-17.33L31.08-17.33Q30.51-16.80 30.06-15.77ZM43.85-3.80L43.85-3.80L43.85-3.80Q43.85-4.83 44.38-7.41L44.38-7.41L46.40-17.67L44.16-17.67L44.31-18.81L44.31-18.81Q48.87-20.18 53.28-23.52L53.28-23.52L55.10-23.52L54.19-19.38L57.15-19.38L56.81-17.67L53.88-17.67L51.95-7.41L51.95-7.41Q51.45-5.05 51.45-4.26L51.45-4.26L51.45-4.26Q51.45-2.43 53.05-2.05L53.05-2.05L53.05-2.05Q52.67-0.76 51.30 0L51.30 0L51.30 0Q49.93 0.76 47.99 0.76L47.99 0.76L47.99 0.76Q46.06 0.76 44.95-0.46L44.95-0.46L44.95-0.46Q43.85-1.67 43.85-3.80ZM66.08-2.09L66.08-2.09L66.08-2.09Q64.90 0.76 61.14 0.76L61.14 0.76L61.14 0.76Q59.20 0.76 57.99-0.57L57.99-0.57L57.99-0.57Q56.96-1.75 56.96-2.93L56.96-2.93L56.96-2.93Q56.96-6.00 58.37-12.01L58.37-12.01L59.77-19.38L67.49-20.14L65.17-8.13L65.17-8.13Q64.52-5.32 64.52-4.33L64.52-4.33L64.52-4.33Q64.52-2.17 66.08-2.09ZM60.46-24.66L60.46-24.66L60.46-24.66Q60.46-26.14 61.69-26.94L61.69-26.94L61.69-26.94Q62.93-27.74 64.71-27.74L64.71-27.74L64.71-27.74Q66.50-27.74 67.58-26.94L67.58-26.94L67.58-26.94Q68.67-26.14 68.67-24.66L68.67-24.66L68.67-24.66Q68.67-23.18 67.47-22.42L67.47-22.42L67.47-22.42Q66.27-21.66 64.49-21.66L64.49-21.66L64.49-21.66Q62.70-21.66 61.58-22.42L61.58-22.42L61.58-22.42Q60.46-23.18 60.46-24.66ZM84.13-22.04L84.13-22.04L84.13-22.04Q84.66-22.95 84.66-23.94L84.66-23.94L84.66-23.94Q84.66-25.69 83.60-25.69L83.60-25.69L83.60-25.69Q81.97-25.69 81.28-22.34L81.28-22.34L80.71-19.38L84.17-19.38L83.94-17.67L80.37-17.67L76.95 0L69.27 0.76L72.92-17.67L70.22-17.67L70.57-19.38L73.23-19.38L74.02-22.38L74.02-22.38Q74.71-25.16 77.63-26.45L77.63-26.45L77.63-26.45Q79.76-27.36 83.33-27.36L83.33-27.36L83.33-27.36Q86.91-27.36 88.50-26.45L88.50-26.45L88.50-26.45Q90.10-25.54 90.10-24.32L90.10-24.32L90.10-24.32Q90.10-23.10 89.15-22.34L89.15-22.34L89.15-22.34Q88.20-21.58 87.13-21.58L87.13-21.58L87.13-21.58Q85.04-21.58 84.13-22.04ZM95.91-4.29L95.91-4.29L95.91-4.29Q93.94-2.24 90.33-2.24L90.33-2.24L90.33-2.24Q85.80-2.24 84.85-5.55L84.85-5.55L84.85-5.55Q84.55-6.54 84.55-7.64L84.55-7.64L84.55-7.64Q84.55-8.74 84.78-9.88L84.78-9.88L86.56-19.38L94.28-20.14L92.19-9.08L92.19-9.08Q92.11-8.59 92.00-8.06L92.00-8.06L92.00-8.06Q91.88-7.52 91.88-6.97L91.88-6.97L91.88-6.97Q91.88-6.42 92.07-6.06L92.07-6.06L92.07-6.06Q92.26-5.70 92.53-5.47L92.53-5.47L92.53-5.47Q92.99-5.17 93.80-5.17L93.80-5.17L93.80-5.17Q94.62-5.17 95.32-6.16L95.32-6.16L95.32-6.16Q96.03-7.14 96.37-8.85L96.37-8.85L98.46-19.38L105.94-20.14L103.09-5.21L103.09-5.21Q101.69 2.09 98.80 4.98L98.80 4.98L98.80 4.98Q97.32 6.46 95.40 7.05L95.40 7.05L95.40 7.05Q93.48 7.64 91.01 7.64L91.01 7.64L91.01 7.64Q87.02 7.64 84.74 6.38L84.74 6.38L84.74 6.38Q82.46 5.13 82.46 3.04L82.46 3.04L82.46 3.04Q82.46 1.48 83.64 0.59L83.64 0.59L83.64 0.59Q84.82-0.30 86.64-0.30L86.64-0.30L86.64-0.30Q88.24-0.30 89.45 0.38L89.45 0.38L89.45 0.38Q90.17 0.80 90.52 1.33L90.52 1.33L90.52 1.33Q89.64 2.09 89.64 3.34L89.64 3.34L89.64 3.34Q89.64 5.02 91.16 5.02L91.16 5.02L91.16 5.02Q93.67 5.02 95.11-0.76L95.11-0.76L95.11-0.76Q95.53-2.47 95.91-4.29Z" fill="url(#editing-outline-gradient)"/></g></g><style>text {
+                        font-size: 64px;
+                        font-family: Arial Black;
+                        dominant-baseline: central;
+                        text-anchor: middle;
+                    }</style></svg>        </div>
+        <ul class="nav">
+            <li class="nav-item profile">
+                <div class="profile-desc">
+                    <div class="profile-pic">
+                        <div class="count-indicator">
+
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">Admin</h5>
+                            <span>Back office</span>
+                        </div>
+                    </div>
+                    <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-settings text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-onepassword  text-info"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-calendar-today text-success"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="index.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+                    <span class="menu-title">Gallerie</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+                    <span class="menu-title">Evenements</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="pages/tables/basic-table.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title">Cours</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item w-100">
+                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                            {% block Rech %}
+                                <input id="myInput"  class="form-control" onkeyup="myFunction()" placeholder="Rechercher" title="Type in a name">
+                                <p><button  style="margin-left: 15px" class="btn btn-outline-light" onclick="sortTable()">Sort</button></p>
+                            {% endblock %}
+                        </form>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right"></ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-format-line-spacing"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+{% block body %}
+                {% endblock %}
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                //check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
+</body>
+</html>
