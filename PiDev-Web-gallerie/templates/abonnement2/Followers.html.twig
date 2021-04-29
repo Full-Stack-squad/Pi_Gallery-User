@@ -1,0 +1,36 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Mes abonnés{% endblock %}
+
+{% block body %}
+<h1>Mes abonnés</h1>
+
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+
+        <th>Nom</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for abonnement2 in abonnement2s %}
+        <tr>
+    {# select * from abonnement where idU= '
+    <td><a href="{{ path('d) }}">{{ abonnement2.noma  }}</a></td>
+    #}
+
+          {% if  abonnement2.idU == 2%}  <td>{{ abonnement2.noma }}</td>
+            <td>
+                <a  class="btn btn-outline-primary" style="width: 71px" href="{{ path('abonnement2_show', {'id': abonnement2.id}) }}">show</a>
+                {{ include('abonnement2/_delete_form.html.twig') }}
+            </td>
+            {% endif %}
+        </tr>
+
+
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

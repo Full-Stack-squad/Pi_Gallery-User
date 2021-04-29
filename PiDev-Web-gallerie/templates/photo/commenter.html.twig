@@ -1,0 +1,164 @@
+{% extends 'template.html.twig' %}
+{% block javascripts %}
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                /* No need to set credentials if already passed in URL */
+                center: new Microsoft.Maps.Location(47.624527, -122.355255),
+                zoom: 8,
+                mapTypeId: Microsoft.Maps.MapTypeId.canvasDark,
+            });
+            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                var requestOptions = {
+                    bounds: map.getBounds(),
+                    where: '{{ pic.localisation }}',
+                    callback: function (answer, userData) {
+                        map.setView({ bounds: answer.results[0].bestView });
+                        map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
+                    }
+                };
+                searchManager.geocode(requestOptions);
+            });
+
+        }
+    </script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Arew96jBgkLtZofYIO503lTVv15wSq6VoFyI0WYbuXYk0TNQNoTM3tycYcW5FwEL&callback=loadMapScenario' async defer></script>
+
+{% endblock %}
+{% block head %}
+<div class="info">
+    <h1 class="masthead-subheading">Voir et Commenter</h1>
+    <p class="masthead-heading text-uppercase">la photo {{ pic.titre }}</p>
+</div>
+{% endblock %}
+{% block body %}
+
+    <div class="comment-photo-page">
+
+        <div class="under-title"><button class="home-btn">Home</button><p>{{ pic.localisation }}</p></div>
+        <div id='myMap' style='width: 100vw; height: 400px;'></div>
+        <div class="comment-body">
+        <div style="width: 50%;height: 100%;padding: 60px"><img src="{{ asset(pic.url)}}" class="showed-pic" alt="..." >
+        </div>
+        <div class="comments-section">
+            <div class="comments-boder">
+            <div class="comments">
+{% for i in comms %}
+
+<div class="one-comment">
+    <p>{{ i.nomUser }}-{{ i.comm }}</p>
+
+
+
+    <a class="icon-del" href={{ path('delcomm',{'id':i.idcomm,'idp':pic.idPhoto}) }} > <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 512 512" height="30" viewBox="0 0 512 512" width="30"><g><path d="m424 64h-88v-16c0-26.467-21.533-48-48-48h-64c-26.467 0-48 21.533-48 48v16h-88c-22.056 0-40 17.944-40 40v56c0 8.836 7.164 16 16 16h8.744l13.823 290.283c1.221 25.636 22.281 45.717 47.945 45.717h242.976c25.665 0 46.725-20.081 47.945-45.717l13.823-290.283h8.744c8.836 0 16-7.164 16-16v-56c0-22.056-17.944-40-40-40zm-216-16c0-8.822 7.178-16 16-16h64c8.822 0 16 7.178 16 16v16h-96zm-128 56c0-4.411 3.589-8 8-8h336c4.411 0 8 3.589 8 8v40c-4.931 0-331.567 0-352 0zm313.469 360.761c-.407 8.545-7.427 15.239-15.981 15.239h-242.976c-8.555 0-15.575-6.694-15.981-15.239l-13.751-288.761h302.44z"/><path d="m256 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"/><path d="m336 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"/><path d="m176 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"/></g></svg></a>
+    <!-- Button trigger modal -->
+    <svg class="icon-modif" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{i.idcomm}}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+    <g>
+        <path d="M371.28,244.753v95.598H202.578V264.3L39.617,388.15L202.578,512v-76.051h264.3V244.753H371.28z M450.008,419.079h-264.3    v58.911l-118.21-89.84l118.21-89.84v58.911H388.15v-95.598h61.857V419.079z"/>
+    </g>
+</g>
+        <g>
+            <g>
+                <rect x="126.689" y="375.79" transform="matrix(0.6139 -0.7894 0.7894 0.6139 -269.78 264.1392)" width="16.87" height="64.119"/>
+            </g>
+        </g>
+        <g>
+            <g>
+                <path d="M472.383,123.85L309.422,0v76.051h-264.3v191.196h95.598v-95.598h168.702V247.7L472.383,123.85z M123.85,154.779v95.598    H61.992V92.921h264.3V34.01l118.21,89.84l-118.21,89.84v-58.911H123.85z"/>
+            </g>
+        </g>
+        <g>
+            <g>
+                <rect x="368.5" y="72.106" transform="matrix(0.6139 -0.7894 0.7894 0.6139 63.3109 337.7681)" width="16.87" height="64.119"/>
+            </g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+</svg>
+
+</div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop{{i.idcomm}}"   tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog"   id="{{i.idcomm}}" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modifier Commentaire</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modif-from">
+                <div class="modal-body">
+
+                    <form method="POST"  name="rs" action="{{ path('modifcomm',{'id':i.idcomm,'idp':pic.idPhoto}) }}">
+                        <div class="modif-b">
+                            <div class="col-sm-10">
+                            <label  class="col-sm-2 col-form-label">Commentaire</label>
+                            <input type="text" style="width: 15rem;text-align: center" value="{{ i.comm }}" class="form-control" name="tfmodif" placeholder="Commenter"/>
+                            </div>
+                            <div style="display: flex;height: fit-content;align-self: center;">
+                            <input type="Submit" style="margin-right: 10px" class="btn btn-primary" value="Modifier"/>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </form>
+                </div></div>
+            </div>
+        </div>
+    </div> {% endfor %}
+
+                {% for j in otherComms %}
+                <div class="one-comment">
+                    <p>{{ j.nomUser }}-{{ j.comm }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="add-comm">
+                <form method="POST" class="add-cpmment" name="rs" action="{{  path('comme',{'id':pic.idPhoto}) }}">
+                    <div class="commenty">
+                        <input type="text" style="width: 12rem;text-align: center" class="modif-control" name="tfcomment" placeholder="Commenter"/>
+                        <input type="Submit" class="btn-add-comment" value="Commenter"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+
+{% endblock %}
