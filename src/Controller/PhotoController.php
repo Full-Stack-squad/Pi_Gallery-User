@@ -10,11 +10,14 @@ use App\Repository\UserrRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 class PhotoController extends AbstractController
@@ -76,9 +79,9 @@ class PhotoController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted()&& $form->isValid()){
             $file = $form['url']->getData();
-            $directory=".\assets\images";
+            $directory="C:\wamp64\www\doc";
             $file->move($directory, $file->getClientOriginalName());
-            $Photo->setUrl($directory."\\".$file->getClientOriginalName());
+            $Photo->setUrl("http://127.0.0.1/doc"."/".$file->getClientOriginalName());
 
             $Photo->setCouleur($form['couleur']->getData());
             $Photo->setTheme($form['theme']->getData());
@@ -228,6 +231,40 @@ class PhotoController extends AbstractController
 
         return $this->redirect($req->server->get('HTTP_REFERER'));
     }
+
+    /**
+     * @param PhotoRepository $prep
+     * @Route ("/photo/listPhoto",name="listeP")
+     */
+    public function getPicture(PhotoRepository $prep, SerializerInterface $serializerInterface){
+        $Pictures= $prep->findAll();
+        $serialzier = new Serializer(array(new ObjectNormalizer()));
+        $json=$serialzier->normalize($Pictures);
+        return new JsonResponse($json);
+    }
+
+
+    /**
+     * @param Request $req
+     * @param SerializerInterface $Serialiser
+     * @return Response
+     * @Route ("/photo/addPicte/{titre}/{th}/{coul}/{loc}/{url}",name="addpc")
+     */
+    public function addPicture(Request $req, SerializerInterface $Serialiser,$titre,$coul,$loc,$url,$th){
+        $pict= new Photo();
+        $pict->setTitre($titre);
+        $pict->setTheme($th);
+        $pict->setCouleur($coul);
+        $pict->setLocalisation($loc);
+        $pict->setDateAjout(date("Y/m/d"));
+        $pict->setUrl($url);
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($pict);
+        $em->flush();
+        return new Response('photo added ');
+
+    }
+
 
 
 }

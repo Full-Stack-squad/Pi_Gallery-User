@@ -10,10 +10,14 @@ use App\Repository\UserrRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Test\Constraint\RequestAttributeValueSame;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class CommentaireController extends AbstractController
 {
@@ -158,5 +162,39 @@ class CommentaireController extends AbstractController
 
 
         return $this->redirect($req->server->get('HTTP_REFERER'));
+    }
+
+    /**
+     * @param CommentaireRepository $crep
+     * @return JsonResponse
+     * @Route ("/commentaire/gelallcoms/{id}",name="gac")
+     */
+    public function getCommments(CommentaireRepository $crep,$id){
+        $comments= $crep->backComments($id);
+        $serialzier = new Serializer(array(new ObjectNormalizer()));
+        $json=$serialzier->normalize($comments);
+        return new JsonResponse($json);
+    }
+
+    /**
+     * @param Request $req
+     * @param SerializerInterface $Serialiser
+     * @param $comm
+     * @param $idp
+     * @return Response
+     * @Route ("/commentaire/addone/{comm}/{idp}",name="addone")
+     */
+    public function addCommMobile(Request $req, SerializerInterface $Serialiser,$comm,$idp){
+        $pict= new Commentaire();
+        $pict->setComm($comm);
+        $pict->setNomUser("yesy");
+        $pict->setIdu('4');
+        $pict->setIdPhoto($idp);
+
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($pict);
+        $em->flush();
+        return new Response('comment added ');
+
     }
 }
